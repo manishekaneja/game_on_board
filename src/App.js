@@ -13,8 +13,9 @@ class App extends Component {
     this.state = {
       diff: 0,
       selected: 0,
-      player_name1: 'A',
-      player_name2: 'B'
+      player_name1: 'Player 1',
+      player_name2: 'Player 2',
+      winner: {}
     }
   }
   render() {
@@ -36,7 +37,11 @@ class App extends Component {
         {selected === 2 && <Rules onNext={_ => this.setState(ps => ({ selected: ps.selected + 1 }))} />}
         {selected === 3 &&
           <div style={{ flex: 1, height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}>
-            <Game difficult={this.state.diff} player_name1={this.state.player_name1} player_name2={this.state.player_name2} />
+            <Game difficult={this.state.diff}
+              player_name1={this.state.player_name1}
+              player_name2={this.state.player_name2}
+              reset={_ => this.setState({ selected: 1 })}
+            />
           </div>}
       </div>
     </SnackbarProvider>
